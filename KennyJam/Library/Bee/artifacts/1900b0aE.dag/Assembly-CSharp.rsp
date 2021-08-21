@@ -344,6 +344,7 @@
 "Assets/Scripts/SimpleCameraController.cs"
 "Assets/Scripts/Sofa.cs"
 "Assets/Scripts/Wheel.cs"
+"Assets/Scripts/WheelModel.cs"
 "Assets/Thirdparty/BioIK/BioIK.cs"
 "Assets/Thirdparty/BioIK/Helpers/Enums.cs"
 "Assets/Thirdparty/BioIK/Helpers/Evolution.cs"

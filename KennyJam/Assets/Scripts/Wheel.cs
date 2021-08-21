@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Wheel : MonoBehaviour {
 
-    [SerializeField] private Transform sofa;
+    [SerializeField] private Sofa sofa;
     [SerializeField] private Enums.Side side;
+    [SerializeField] Transform model;
+    [SerializeField] float radius;
 
     private Rigidbody rb;
 
@@ -18,6 +20,13 @@ public class Wheel : MonoBehaviour {
             PlayerInput.rollEvent_R += PlayerInput_rollEvent;
     }
 
+    //private void Update() {
+    //    float angvel = transform.InverseTransformVector(rb.velocity).z / radius;
+    //    model.localRotation = Quaternion.Euler(model.localRotation.eulerAngles + new Vector3(100 * Time.deltaTime, 0, 0));
+    //    //model.Rotate(Vector3.right * angvel * Mathf.Rad2Deg, Space.Self);
+    //    //model.Rotate(model.right * angvel * Mathf.Rad2Deg);
+    //}
+
     private void PlayerInput_rollEvent(float value) {
         //rb.AddTorque(transform.right * value * 10000);
         Debug.Log(value);
@@ -27,7 +36,7 @@ public class Wheel : MonoBehaviour {
 
     private IEnumerator ForceOverTtime(float force, float time) {
 
-        Vector3 forward = Vector3.ProjectOnPlane(sofa.forward, Vector3.up).normalized;
+        Vector3 forward = Vector3.ProjectOnPlane(sofa.transform.forward, Vector3.up).normalized;
         if (rb.velocity.magnitude < 0.3f)
             rb.velocity += forward * 0.3f;
 
