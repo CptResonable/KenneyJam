@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour {
 
     public delegate void FloatDelegate(float value);
     public static event FloatDelegate rollEvent;
+    public static event FloatDelegate rollInitEvent;
 
     private void Update() {
 
@@ -26,6 +27,7 @@ public class PlayerInput : MonoBehaviour {
 
     private IEnumerator RollInterval() {
         isRolling = true;
+        rollInitEvent.Invoke(rollForce);
         yield return new WaitForSeconds(rollInterval);
         isRolling = false;
         rollEvent.Invoke(rollForce);

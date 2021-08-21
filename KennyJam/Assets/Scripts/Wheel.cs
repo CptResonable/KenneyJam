@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Wheel : MonoBehaviour {
-    public enum Side { left, right };
 
     [SerializeField] private Transform sofa;
-    [SerializeField] private Side side;
+    [SerializeField] private Enums.Side side;
 
     private Rigidbody rb;
 
@@ -22,9 +21,9 @@ public class Wheel : MonoBehaviour {
         //Vector3 forward = Vector3.ProjectOnPlane(sofa.forward, Vector3.up).normalized;
         //rb.AddForce(forward * value * 10000);
 
-        if (side == Side.left && Input.GetKey(KeyCode.Q))
+        if (side == Enums.Side.left && Input.GetKey(KeyCode.Q))
             StartCoroutine(ForceOverTtime(-value, 0.5f));
-        else if (side == Side.right && Input.GetKey(KeyCode.E))
+        else if (side == Enums.Side.right && Input.GetKey(KeyCode.E))
             StartCoroutine(ForceOverTtime(-value, 0.5f));
     }
 
@@ -41,7 +40,7 @@ public class Wheel : MonoBehaviour {
         while (time > 0) {
             yield return new WaitForFixedUpdate();
             time -= Time.deltaTime;
-            rb.AddForce(forward * force * 5000);
+            rb.AddForce(forward * force * 15000);
         }
 
         yield return null;
