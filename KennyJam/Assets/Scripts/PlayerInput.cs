@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour {
             if (isRolling)
                 rollForce += mouseDelta * Time.deltaTime;
             else {
-                rollForce += rollForce;
+                rollForce += mouseDelta * Time.deltaTime;
                 StartCoroutine(RollInterval());
             }
         }

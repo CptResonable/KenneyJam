@@ -22,23 +22,26 @@ public class Wheel : MonoBehaviour {
         //Vector3 forward = Vector3.ProjectOnPlane(sofa.forward, Vector3.up).normalized;
         //rb.AddForce(forward * value * 10000);
 
-        if (side == Side.left && Input.GetKey(KeyCode.Q))     
+        if (side == Side.left && Input.GetKey(KeyCode.Q))
             StartCoroutine(ForceOverTtime(-value, 0.5f));
         else if (side == Side.right && Input.GetKey(KeyCode.E))
             StartCoroutine(ForceOverTtime(-value, 0.5f));
     }
 
-    private void FixedUpdate() {
-        rb.velocity -= Vector3.Project(rb.velocity, transform.right);
-    }
+    //private void FixedUpdate() {
+    //    rb.velocity -= Vector3.Project(rb.velocity, transform.right);
+    //}
 
     private IEnumerator ForceOverTtime(float force, float time) {
+
+        Vector3 forward = Vector3.ProjectOnPlane(sofa.forward, Vector3.up).normalized;
+        if (rb.velocity.magnitude < 0.3f)
+            rb.velocity += forward * 0.3f;
 
         while (time > 0) {
             yield return new WaitForFixedUpdate();
             time -= Time.deltaTime;
-            Vector3 forward = Vector3.ProjectOnPlane(sofa.forward, Vector3.up).normalized;
-            rb.AddForce(forward * force * 2000);
+            rb.AddForce(forward * force * 5000);
         }
 
         yield return null;
