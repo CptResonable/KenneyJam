@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour {
     [SerializeField] float rollInterval = 0.2f;
+    [SerializeField] Hand hand_L;
+    [SerializeField] Hand hand_R;
     private bool isRolling = false;
 
     private float rollForce = 0;
